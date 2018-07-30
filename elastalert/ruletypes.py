@@ -1006,7 +1006,7 @@ class BaseAggregationRule(RuleType):
     def unwrap_interval_buckets(self, timestamp, query_key, interval_buckets):
         for interval_data in interval_buckets:
             # Use bucket key here instead of start_time for more accurate match timestamp
-            self.check_matches(ts_to_dt(interval_data['key_as_string']), query_key, interval_data)
+            self.check_matches(self.rules['ts_to_dt'](interval_data['key_as_string']), query_key, interval_data)
 
     def unwrap_term_buckets(self, timestamp, term_buckets):
         for term_data in term_buckets:
